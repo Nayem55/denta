@@ -1,0 +1,23 @@
+.footer{
+    background-color: #05313d;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    padding-left: 180px;
+}
+.footer p{
+    color: rgba(255, 255, 255, 0.479);
+}
+.footer p:hover{
+    color: rgba(255, 255, 255, 0.637);
+    cursor: pointer;
+}
+.footerImage{
+    width: 200px;
+}
+.footerLeft{
+    width: 35%;
+}
+.footerRight{
+    width: 65%;
+}

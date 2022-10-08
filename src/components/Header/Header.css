@@ -1,0 +1,27 @@
+.navbar{
+    padding: 20px 40px;
+    background-color: white;
+}
+.nav-link a{
+    text-decoration: none;
+    margin-right: 20px;
+    color: black;
+}
+.nav-link a:hover{
+    color: #00a9b1;
+    font-weight: bold;
+}
+.nav-link .book{
+    background: linear-gradient(to bottom, #006666 0%, #0099ff 100%);
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: small;
+    border-radius: 20px;
+}
+.nav-link .book:hover{
+    border: 1px solid #0099ff;
+    background:white;
+    padding: 12px;
+    border-radius: 20px;
+}
