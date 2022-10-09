@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import Banner from "./banner.jpg";
+import Banner from "./banner.avif";
 import Teeth from "./Screenshot 2022-09-29 185837.png";
 import Teeth1 from "./Screenshot 2022-09-29 185837.png";
 import Teeth2 from "./Screenshot 2022-09-29 193057.png";

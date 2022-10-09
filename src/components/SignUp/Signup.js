@@ -24,15 +24,14 @@ const Signup = () => {
   ] = useCreateUserWithEmailAndPassword(auth);
   
   const [user]= useAuthState(auth);
-  console.log(user)
-  // useEffect(()=>{
-  //   if(user){
-  //     navigate(location.state);
-  // }
-  // if(error){
-  //   setErrorMessage(error.message)
-  // }
-  // },[user,navigate,error,name,num])
+  useEffect(()=>{
+    if(user){
+      navigate(location.state);
+  }
+  if(error){
+    setErrorMessage(error.message)
+  }
+  },[user,error])
 
   const handleEmail=(e)=>{
     setEmail(e.target.value);
@@ -50,6 +49,9 @@ const Signup = () => {
     e.preventDefault();
     await createUser(email,pass);
     await profile({displayName:userName , photoURL : num});
+  }
+  if(loading){
+    return
   }
 
   return (
