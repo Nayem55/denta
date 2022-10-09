@@ -44,3 +44,6 @@ hr{
 .login a{
     text-decoration: none;
 }
+.span{
+  cursor: pointer;
+}

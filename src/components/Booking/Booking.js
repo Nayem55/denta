@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import "./Booking.css";
-import img from "../Home/About.png";
+import img from "./booking.png";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase_init";
 
 const Booking = () => {
-  const [show , setShow] = useState(false)
-  const [user]= useAuthState(auth);
+  const [show, setShow] = useState(false);
+  const [user] = useAuthState(auth);
   return (
     <div className="booking">
-      <img src={img} alt="" />
+      <div className="booking-img">
+        <img src={img} alt="" />
+      </div>
       <div className="form">
         <form className="form-container">
           <h2 className="ps-3">Make appointments</h2>
-          <input type="text" placeholder={user?.displayName} readOnly/>
-          <input type="number" placeholder="Phone Number"/>
+          <input type="text" placeholder={user?.displayName} readOnly />
+          <input type="number" placeholder={user?.photoURL} readOnly />
           <input type="email" placeholder={user?.email} readOnly />
           <select className="form-select">
-            <option >Department</option>
+            <option>Department</option>
             <option value="1">Complete Whitening Pack</option>
             <option value="2">Sedation Dentistry</option>
             <option value="3">Dental Cleaning</option>
@@ -28,7 +30,7 @@ const Booking = () => {
           </select>
           <input type="date" className="date" />
           <select className="form-select">
-            <option >Time</option>
+            <option>Time</option>
             <option value="1">9.00 am</option>
             <option value="2">10.00 am</option>
             <option value="3">11.00 am</option>
@@ -40,10 +42,14 @@ const Booking = () => {
             <option value="8">5.00 pm</option>
             <option value="9">6.00 pm</option>
           </select>{" "}
-          <button onClick={(e)=>{
-            setShow(true);
-            e.preventDefault();
-          }}>BOOKING A VISIT</button>
+          <button
+            onClick={(e) => {
+              setShow(true);
+              e.preventDefault();
+            }}
+          >
+            BOOKING A VISIT
+          </button>
         </form>
       </div>
       <div
@@ -52,21 +58,24 @@ const Booking = () => {
         className="d-flex justify-content-center align-items-center w-100"
       >
         <div
-          className={`toast position ${show&&"show"}`}
+          className={`toast position ${show && "show"}`}
           role="alert"
           aria-live="assertive"
           aria-atomic="true"
         >
           <div className="toast-header">
             <strong className="me-auto">Succesful</strong>
-            <button onClick={()=>setShow(false)}
+            <button
+              onClick={() => setShow(false)}
               type="button"
               className="btn-close"
               data-bs-dismiss="toast"
               aria-label="Close"
             ></button>
           </div>
-          <div className="toast-body">Your appointment has been fixed. Thank You.</div>
+          <div className="toast-body">
+            Your appointment has been fixed. Thank You.
+          </div>
         </div>
       </div>
     </div>

@@ -1,40 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from '../Header/logo.png'
 import logo from '../Login/google-seeklogo.com.svg'
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from "../../firebase_init";
-import { updatePhoneNumber, updateProfile } from "firebase/auth";
 
 
 const Signup = () => {
   const [email,setEmail]= useState('')
   const [pass,setPass]= useState('')
-  const [name,setName]= useState('')
+  const [userName,setName]= useState('')
   const [num,setNum]= useState('')
   const [errorMessage,setErrorMessage]= useState('')
   const navigate = useNavigate()
-
+  const location= useLocation();
+  const [profile]= useUpdateProfile(auth)
+ 
   const [
-    createUserWithEmailAndPassword,
-    user,
+    createUser,
+    ,
     loading,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
   
-
-  useEffect(()=>{
-    if(user){
-      navigate('/');
-      updateProfile(auth.currentUser, {
-        displayName: name ,
-      })
-      updatePhoneNumber()
-  }
-  if(error){
-    setErrorMessage(error.message)
-  }
-  },[user,navigate,error,name,num])
+  const [user]= useAuthState(auth);
+  console.log(user)
+  // useEffect(()=>{
+  //   if(user){
+  //     navigate(location.state);
+  // }
+  // if(error){
+  //   setErrorMessage(error.message)
+  // }
+  // },[user,navigate,error,name,num])
 
   const handleEmail=(e)=>{
     setEmail(e.target.value);
@@ -48,12 +46,10 @@ const Signup = () => {
   const handleNum=(e)=>{
     setNum(e.target.value);
   }
-  const handleSubmit=(e)=>{
+  const handleSubmit= async e=>{
     e.preventDefault();
-    if(loading){
-      return
-    }
-    createUserWithEmailAndPassword(email,pass);
+    await createUser(email,pass);
+    await profile({displayName:userName , photoURL : num});
   }
 
   return (
@@ -61,10 +57,10 @@ const Signup = () => {
       <div className="login">
         <form className="login-form" onSubmit={handleSubmit}>
           <img className="login-img" src={img} alt="" />
-          <input onBlur={handleName} type="text" placeholder="Full Name" required />
-          <input onBlur={handleNum} type="number" placeholder="Phone Number" required />
-          <input onBlur={handleEmail} type="email" placeholder="Email" required />
-          <input onBlur={handlePass} type="password" placeholder="Password" required />
+          <input onBlur={handleName} type="text" placeholder="Full Name" />
+          <input onBlur={handleNum} type="number" placeholder="Phone Number" />
+          <input onBlur={handleEmail} type="email" placeholder="Email" />
+          <input onBlur={handlePass} type="password" placeholder="Password"  />
           <input className="submit" type="submit" value="Sign up" />
           <p className="text-danger ms-2 fw-bold">{errorMessage}</p>
           <div className="d-flex">

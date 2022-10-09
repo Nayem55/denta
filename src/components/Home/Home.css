@@ -46,10 +46,9 @@
     border-radius: 10px;
 }
 .details button:hover{
-    border: 1px solid #0099ff ;
-    background: white;
+    background: #006666;
     padding: 15px;
-    color: #0099ff;
+    color: #ffffff;
     font-weight: bold;
     border-radius: 10px;
 }

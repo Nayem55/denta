@@ -27,7 +27,7 @@ const Login = () => {
   if(error){
     setErrorMessage(error.message)
   }
-  },[user,navigate,error,from])
+  },[user,error])
   
   const handleEmail=(e)=>{
     setEmail(e.target.value);
@@ -35,20 +35,27 @@ const Login = () => {
   const handlePass=(e)=>{
     setPass(e.target.value);
   }
+
   const handleSubmit=(e)=>{
+
     e.preventDefault();
     if(loading){
       return
     }
     signInWithEmailAndPassword(email, pass);
   }
+
+const handleNavigate=()=>{
+  navigate("/signup",{state:from})
+}
+
   return (
     <div className="login-container">
       <div className="login">
         <form className="login-form" onSubmit={handleSubmit}>
           <img className="login-img" src={img} alt="" />
-          <input onClick={handleEmail} type="email" placeholder="Email" required />
-          <input onClick={handlePass} type="password" placeholder="Password" required />
+          <input onBlur={handleEmail} type="email" placeholder="Email" required />
+          <input onBlur={handlePass} type="password" placeholder="Password" required />
           <input className="submit" type="submit" value="Sign in" /> 
           <p className="text-danger ms-2 fw-bold">{errorMessage}</p>
           <div className="d-flex">
@@ -57,7 +64,7 @@ const Login = () => {
             <hr />
           </div>
           <button> <img className="logo mx-2" src={logo} alt="" /> Sign In With Google</button>
-          <p className="text-center">Don't have an account? <Link to="/signup">Sign up</Link> </p>
+          <p className="text-center">Don't have an account? <span className="span" onClick={handleNavigate} > Sign up</span> </p>
         </form>
       </div>
     </div>

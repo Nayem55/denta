@@ -3,6 +3,13 @@
     background-color: #f0f7fd;
     display: flex;
 }
+.booking-img{
+    width: 50%;
+}
+.booking-img img{
+    width: 700px;
+    height: 100%;
+}
 .form{
     width: 50%;
 }
