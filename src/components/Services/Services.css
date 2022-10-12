@@ -25,11 +25,11 @@
 
 }
 .service{
-    width: 350px;
+    max-width: 350px;
     margin: 0 auto;
 }
 .service img{
-    width: 350px;
+    max-width: 350px;
     border-radius: 10px;
 }
 .service p{
@@ -43,9 +43,11 @@
     color: white;
     padding: 10px;
     border-radius: 10px;
+    border: 1px solid #0099ff !important  ;
 }
 .service button:hover{
     border: 1px solid #0099ff  ;
     background: white;
     color: #0099ff;
+    font-weight: bold;
 }

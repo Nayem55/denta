@@ -44,6 +44,7 @@
     color: white;
     font-weight: bold;
     border-radius: 10px;
+    border: none !important;
 }
 .details button:hover{
     background: #006666;

@@ -46,4 +46,6 @@ hr{
 }
 .span{
   cursor: pointer;
+  color: #0099ff;
+  font-weight: bold;
 }
